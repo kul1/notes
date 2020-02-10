@@ -12,14 +12,17 @@ Rails.application.routes.draw do
   get '/auth/:provider/callback' => 'sessions#create'
   get '/auth/failure' => 'sessions#destroy'
   get '/logout' => 'sessions#destroy', :as => 'logout'
+  get '/notes/my' => 'notes/my'
+  get '/notes/my/destroy' => 'notes#destroy'
   get '/articles/my' => 'articles/my'
   get '/articles/my/destroy' => 'articles#destroy'
+  resources :notes
   resources :articles
   resources :users
   resources :identities
   resources :sessions
   resources :password_resets
   resources :jinda, :only => [:index, :new]
-  root :to => 'jinda#index'
+  root :to => 'notes#index'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
