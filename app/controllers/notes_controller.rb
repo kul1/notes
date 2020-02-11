@@ -2,10 +2,14 @@ class NotesController < ApplicationController
   before_action :xload_note, only: [:show, :destroy]
   before_action :xload_current_ma_user, only: [:destroy]
 
-	def index
-    binding.pry
+  def index
     @notes = Note.desc(:created_at).page(params[:page]).per(10)
-	end
+  end
+
+  def my
+    @notes = Note.where(user_id: current_ma_user).desc(:created_at).page(params[:page]).per(10)
+    @page_title       = 'My Notes'
+  end
 
   def show 
   end
@@ -17,25 +21,21 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(
-                      title: $xvars["new_note"]["title"],
-                      body: $xvars["new_note"]["body"],
-                      user_id: $xvars["user_id"])
+      title: $xvars["new_note"]["title"],
+      body: $xvars["new_note"]["body"],
+      user_id: $xvars["user_id"])
     @note.save!
-      # if @note.save!
-      #   format.html { redirect_to @note, notice: 'Sample was successfully created.'  }
-      #   format.json { render :show, status: :created, location: @note }
-      # else
-      #   format.html { render :new }
-      #   format.json { render json: @note.errors, status: :unprocessable_entity }
-      # end
-      redirect_to @note
+    # if @note.save!
+    #   format.html { redirect_to @note, notice: 'Sample was successfully created.'  }
+    #   format.json { render :show, status: :created, location: @note }
+    # else
+    #   format.html { render :new }
+    #   format.json { render json: @note.errors, status: :unprocessable_entity }
+    # end
+    redirect_to @note
 
   end
 
-  def my
-    @notes = Note.where(user_id: current_ma_user).desc(:created_at).page(params[:page]).per(10)
-    @page_title       = 'My Notes'
-  end
 
   def update
     # $xvars["select_note"] and $xvars["edit_note"]
@@ -44,7 +44,7 @@ class NotesController < ApplicationController
     note_id = $xvars["select_note"]["id"]
     @note = Note.find(note_id)
     @note.update(title: $xvars["edit_note"]["title"],
-                body: $xvars["edit_note"]["body"])
+                 body: $xvars["edit_note"]["body"])
     redirect_to @note
 
 
@@ -56,11 +56,11 @@ class NotesController < ApplicationController
     if @current_ma_user.role.upcase.split(',').include?("A") || @current_ma_user == @note.user
       @note.destroy
     end
-      redirect_to :action=>'index'
+    redirect_to :action=>'index'
   end
 
   private
-  
+
   # Tobe called from other controller:jinda
   def xload_current_ma_user
     @current_ma_user = User.find($xvars["user_id"])
@@ -70,6 +70,6 @@ class NotesController < ApplicationController
   def xload_note
     note_id  = $xvars["select_note"] ? $xvars["select_note"]["id"] : params[:id]
     @note = Note.find(note_id)
-end
+  end
 
 end
