@@ -1,29 +1,24 @@
 class NotesController < ApplicationController
-  before_action :load_note, only: [:show, :destroy]
+  before_action :xload_note, only: [:show, :destroy]
+  before_action :xload_current_ma_user, only: [:destroy]
 
 	def index
+    binding.pry
     @notes = Note.desc(:created_at).page(params[:page]).per(10)
 	end
 
   def show 
-    prepare_meta_tags(title: @note.title,
-                      description: @note.text,
-                      keywords: @note.keywords)
   end
 
   def edit
     @note = Note.find(params[:id])
-    @page_title       = 'Member Login'
-
+    @page_title       = 'Edit Note'
   end
 
   def create
-
     @note = Note.new(
-                      title: $xvars["form_note"]["title"],
-                      text: $xvars["form_note"]["text"],
-                      keywords: $xvars["form_note"]["keywords"],
-                      body: $xvars["form_note"]["body"],
+                      title: $xvars["new_note"]["title"],
+                      body: $xvars["new_note"]["body"],
                       user_id: $xvars["user_id"])
     @note.save!
       # if @note.save!
@@ -46,33 +41,35 @@ class NotesController < ApplicationController
     # $xvars["select_note"] and $xvars["edit_note"]
     # These are variables.
     # They contain everything that we get their forms select_note and edit_note
-    note_id = $xvars["select_note"] ? $xvars["select_note"]["title"] : $xvars["p"]["note_id"]
+    note_id = $xvars["select_note"]["id"]
     @note = Note.find(note_id)
-    @note.update(title: $xvars["edit_note"]["note"]["title"],
-                    text: $xvars["edit_note"]["note"]["text"],
-                    keywords: $xvars["edit_note"]["note"]["keywords"],
-                    body: $xvars["edit_note"]["note"]["body"])
+    @note.update(title: $xvars["edit_note"]["title"],
+                body: $xvars["edit_note"]["body"])
     redirect_to @note
 
 
   end
 
   def destroy
-    if Rails.env.test? #Temp solution until fix test of current_ma_user
-      current_ma_user = $xvars["current_ma_user"]
-      #current_ma_user = @note.user
-    end
-    if current_ma_user.role.upcase.split(',').include?("A") || current_ma_user == @note.user
+    xload_current_ma_user
+    xload_note
+    if @current_ma_user.role.upcase.split(',').include?("A") || @current_ma_user == @note.user
       @note.destroy
     end
       redirect_to :action=>'index'
   end
 
   private
-
-  def load_note
-    @note = Note.find(params[:id])
+  
+  # Tobe called from other controller:jinda
+  def xload_current_ma_user
+    @current_ma_user = User.find($xvars["user_id"])
   end
 
+  # Tobe called from other controller:jinda
+  def xload_note
+    note_id  = $xvars["select_note"] ? $xvars["select_note"]["id"] : params[:id]
+    @note = Note.find(note_id)
+end
 
 end

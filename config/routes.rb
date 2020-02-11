@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get '/logout' => 'sessions#destroy', :as => 'logout'
   get '/notes/my' => 'notes/my'
   get '/notes/my/destroy' => 'notes#destroy'
+  get '/notes/destroy' => 'notes#destroy'
   get '/articles/my' => 'articles/my'
   get '/articles/my/destroy' => 'articles#destroy'
   resources :notes

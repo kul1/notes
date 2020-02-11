@@ -1,7 +1,6 @@
-- @title= "All Notes"
+- @title= "My Notes"
 %p
-  - @page_title  = 'All Notes'
-- @notes = Note.desc(:created_at).page(params[:page]).per(10)
+- @page_title  = 'My Notes'
 = paginate @notes
 %table.ui-responsive{"data-role" => "table"}
   %thead
@@ -19,12 +18,7 @@
         %td= note.body.html_safe
         %td= note.created_at.strftime('%m/%d/%Y')
         %td= note.updated_at.strftime('%m/%d/%Y')
-        %td(align='center')
-          - next unless login?
-          - unless current_ma_user.role.upcase.split(',').include?("A")
-            - next unless article.user
-            - next unless current_ma_user == note.user
-          = link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/notes/destroy/#{note.id}';}"
+        %td(align='center')= link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/notes/destroy/#{note.id}';}"
         %td(align='center')= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notes:edit', note_id: note.id}, data: { confirm: "Please Confirm" }
 
         %td(align='center')= link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/notes/destroy/#{note.id}';}"
