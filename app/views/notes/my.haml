@@ -17,5 +17,5 @@
       %td= note.created_at.strftime('%m/%d/%Y')
       %td= note.updated_at.strftime('%m/%d/%Y')
       %td(align='center')= link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/notes/destroy/#{note.id}';}"
-      %td(align='center')= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notes:xedit_note', note_id: note.id}, data: { confirm: "Please Confirm" }
+      %td(align='center')= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notes:xedit', note_id: note.id}, data: { confirm: "Please Confirm" }
 

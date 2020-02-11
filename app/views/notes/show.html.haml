@@ -6,4 +6,4 @@
 
 #note-text= @note.body.html_safe
 
-= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notez:edit_note', note_id: @note.id}, data: { confirm: "Please Confirm" }
+= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notes:xedit', note_id: @note.id}, data: { confirm: "Please Confirm" }

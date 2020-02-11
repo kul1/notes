@@ -41,7 +41,7 @@ class NotesController < ApplicationController
     # $xvars["select_note"] and $xvars["edit_note"]
     # These are variables.
     # They contain everything that we get their forms select_note and edit_note
-    note_id = $xvars["select_note"]["id"]
+    note_id = $xvars["select_note"] ? $xvars["select_note"]["id"] : $xvars["p"]["note_id"]
     @note = Note.find(note_id)
     @note.update(title: $xvars["edit_note"]["title"],
                  body: $xvars["edit_note"]["body"])
