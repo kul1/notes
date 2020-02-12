@@ -3,7 +3,7 @@
 require 'rubygems'
 require 'capybara/rspec' 
 # Set up the mock  
-require 'support/omniauth_macros'
+# require 'support/omniauth_macros'
 require 'valid_attribute'
 
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
