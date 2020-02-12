@@ -6,22 +6,19 @@ RSpec.describe Note, type: :model do
 
     it "valid with  both title and body" do
       before_count = Note.count
-      n = Note.new(title: "dddd", body: "body")
-      n.save
+      Note.create(title: "dddd", body: "body")
       expect(Note.count).not_to eq(before_count)
     end
 
     it "valid with  only title" do
       before_count = Note.count
-      n = Note.new(title: "Title")
-      n.save
+      Note.create(title: "Title")
       expect(Note.count).not_to eq(before_count)
     end
 
     it "invalid with  only body" do
       before_count = Note.count
-      n = Note.new(body: "body")
-      n.save
+      Note.create(body: "body")
       expect(Note.count).to eq(before_count)
     end
   
@@ -29,8 +26,7 @@ RSpec.describe Note, type: :model do
       before_count = Note.count
       title_max = "x"*30
       body_max  = "y"*1001
-      n = Note.new(title: title_max, body: body_max)
-      n.save
+      Note.create(title: title_max, body: body_max)
       expect(Note.count).to eq(before_count)
     end
   end

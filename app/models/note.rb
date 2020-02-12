@@ -7,11 +7,7 @@ class Note
   field :title, :type => String
   field :body, :type => String
   belongs_to :user
-  validates :title, length: { maximum: (MAX_TITLE_LENGTH = 30) }, presence: true
-  validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000)}
-
- #  def title_or_body
- #    error.add(:title, "Title or Body required") unless title.present?
- #  end
+  validates :title, length: { maximum: (MAX_TITLE_LENGTH = 30) }, presence: true  
+  validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000)} 
   # jinda end
 end
