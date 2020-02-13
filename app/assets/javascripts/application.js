@@ -18,7 +18,7 @@
 //= require iscroll-wrapper
 //= require iscroll
 //= require jinda
-//  require turbolinks
+//= require turbolinks
 //  require disable_enter_key.js
 
 

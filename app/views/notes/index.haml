@@ -16,7 +16,7 @@
     %tbody    
       %tr
         %td= link_to note.title, :controller=>"notes", :action=>"show", :id=>note.id
-        %td= note.body.html_safe
+        %td= note.body.html_safe?
         %td= note.created_at.strftime('%m/%d/%Y')
         %td= note.updated_at.strftime('%m/%d/%Y')
         %td(align='center')

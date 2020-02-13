@@ -13,7 +13,7 @@
   - @notes.each do |note|
     %tr
       %td= link_to note.title, :controller=>"notes", :action=>"show", :id=>note.id
-      %td= note.body.html_safe
+      %td= note.body
       %td= note.created_at.strftime('%m/%d/%Y')
       %td= note.updated_at.strftime('%m/%d/%Y')
       %td(align='center')= link_to image_tag('delete.png', style:'border:none; float:none;'), "#", :onclick=>"if (confirm('Please Confirm')) {location.hash='/notes/destroy/#{note.id}';}"

@@ -1,0 +1,13 @@
+<%
+  doc = Note.find_by :id => $xvars["select_note"]["id"]
+%>
+
+<% email = $xvars["select_note"]["email"]  %>
+<%=  email %>
+  <p>Br</p>
+<%= fields_for doc do |f| %>
+  <%= f.label :title, "Title" %>
+  <%= f.text_field :title %>
+  <%= f.label :body, "Body" %>
+  <%= f.text_area :body, :cols=>50, :rows=>6 %>
+<% end %>

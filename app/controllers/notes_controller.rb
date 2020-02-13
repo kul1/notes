@@ -1,5 +1,5 @@
 class NotesController < ApplicationController
-  before_action :xload_note, only: [:show, :destroy]
+  before_action :load_note, only: [:show, :destroy]
   before_action :xload_current_ma_user, only: [:destroy]
 
   def index
@@ -47,16 +47,22 @@ class NotesController < ApplicationController
                  body: $xvars["edit_note"]["body"])
     redirect_to @note
 
-
   end
 
   def destroy
     xload_current_ma_user
-    xload_note
     if @current_ma_user.role.upcase.split(',').include?("A") || @current_ma_user == @note.user
       @note.destroy
     end
     redirect_to :action=>'index'
+  end
+
+  def mail
+    JindaMailer.gmail(
+                    $xvars["display_mail"]["title"],
+                    $xvars["select_note"]["email"],
+                    $xvars["display_mail"]["title"])
+    # mail_from = xload_current_ma_user.email
   end
 
   private
@@ -67,9 +73,8 @@ class NotesController < ApplicationController
   end
 
   # Tobe called from other controller:jinda
-  def xload_note
-    note_id  = $xvars["select_note"] ? $xvars["select_note"]["id"] : params[:id]
-    @note = Note.find(note_id)
+  def load_note
+    @note = Note.find(params[:id])
   end
 
 end
