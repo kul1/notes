@@ -54,7 +54,7 @@ class NotesController < ApplicationController
     if @current_ma_user.role.upcase.split(',').include?("A") || @current_ma_user == @note.user
       @note.destroy
     end
-    redirect_to :action=>'index'
+    redirect_to :action=>'my'
   end
 
   def mail
