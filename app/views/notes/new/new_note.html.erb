@@ -2,9 +2,12 @@
 <%
   doc = Note.new :issue_on=> Date.today, :process_at => Time.now
 %>
+<div name= "note_new">
+    
 <%= fields_for doc do |f| %>
   <%= f.label :title, "Title" %>
   <%= f.text_field :title %><Br>
   <%= f.label :body, "Body Content" %>
   <%= f.cktext_area :body, :cols=>50, :rows=>6 %>
 <% end %>
+</div>

@@ -7,7 +7,15 @@ class Note
   field :title, :type => String
   field :body, :type => String
   belongs_to :user
+  before_validation :ensure_title_has_a_value
      validates :title, length: { maximum: (MAX_TITLE_LENGTH = 30) }, presence: true  
-     validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000)} 
+     validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000)}
+
+     private
+        def ensure_title_has_a_value
+          if title.blank?
+            self.title = body[0..(MAX_TITLE_LENGTH-1)] unless body.blank?
+          end
+        end
   # jinda end
 end

@@ -58,11 +58,11 @@ class NotesController < ApplicationController
   end
 
   def mail
-    JindaMailer.gmail(
-                    $xvars["display_mail"]["title"],
+    NoteMailer.gmail(
+                    $xvars["display_mail"]["body"],
                     $xvars["select_note"]["email"],
-                    $xvars["display_mail"]["title"])
-    # mail_from = xload_current_ma_user.email
+                    $xvars["select_note"]["title"],
+                    xload_current_ma_user.email)
   end
 
   private
