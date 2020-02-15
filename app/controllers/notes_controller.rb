@@ -61,7 +61,7 @@ class NotesController < ApplicationController
     NoteMailer.gmail(
                     $xvars["display_mail"]["body"],
                     $xvars["select_note"]["email"],
-                    $xvars["select_note"]["title"],
+                    $xvars["display_mail"]["title"],
                     xload_current_ma_user.email)
   end
 

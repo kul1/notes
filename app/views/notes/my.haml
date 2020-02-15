@@ -1,11 +1,11 @@
-- @title= "My Notess"
+- @title= "My Notes"
 %P
 - @page_title  = 'My Notes'
 = paginate @notes
-%table#note-table
+%table{:id=>"note-table", :data-mode => "reflow", :data-role => "table"}
   %tr
     %th Title
-    %th Description
+    %th Body 
     %th Created
     %th Updated
     %th Delete

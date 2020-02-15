@@ -8,5 +8,7 @@
 %>
 <div class="field" data-role="fieldcontain">
   <%= label_tag :title, 'Select Note' %>
+  <br>
+  <br>
   <%= select_tag :id, options_from_collection_for_select(note, :id, :title), "notee-menu"=>"false" %>
 </div>
