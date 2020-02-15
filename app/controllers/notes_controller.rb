@@ -1,6 +1,6 @@
 class NotesController < ApplicationController
   before_action :load_note, only: [:show, :destroy]
-  before_action :xload_current_ma_user, only: [:destroy]
+  # before_action :xload_current_ma_user, only: [:destroy]
 
   def index
     @notes = Note.desc(:created_at).page(params[:page]).per(10)
@@ -49,9 +49,15 @@ class NotesController < ApplicationController
 
   end
 
+  def xdestroy
+    @note_id = $xvars["select_note"] ? $xvars["select_note"]["id"] : $xvars["p"]["note_id"]
+    note = Note.find(@note_id)
+    note.destroy
+  end
+
   def destroy
-    xload_current_ma_user
-    if @current_ma_user.role.upcase.split(',').include?("A") || @current_ma_user == @note.user
+    # xload_current_ma_user
+    if current_ma_user.role.upcase.split(',').include?("A") || current_ma_user == @note.user
       @note.destroy
     end
     redirect_to :action=>'my'
@@ -72,7 +78,6 @@ class NotesController < ApplicationController
     @current_ma_user = User.find($xvars["user_id"])
   end
 
-  # Tobe called from other controller:jinda
   def load_note
     @note = Note.find(params[:id])
   end
