@@ -49,14 +49,16 @@ class NotesController < ApplicationController
 
   end
 
-  def xdestroy
+  def delete
+    # called by freemind
+  # Tobe called from other controller:jinda
     @note_id = $xvars["select_note"] ? $xvars["select_note"]["id"] : $xvars["p"]["note_id"]
-    note = Note.find(@note_id)
-    note.destroy
+    @note = Note.find(@note_id)
+    @note.destroy
   end
 
   def destroy
-    # xload_current_ma_user
+    # called by rails menu my
     if current_ma_user.role.upcase.split(',').include?("A") || current_ma_user == @note.user
       @note.destroy
     end

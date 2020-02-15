@@ -1,0 +1,13 @@
+- @title= 'Show Note'
+- doc = Note.find_by :id => @note.id
+%div{:class => "field(data-role=fieldcontain)"}
+  %label.ui-input-text{:for => "title"} Title:
+  %b
+    = @note.title
+%br
+  %label.ui-input-text{:for => "body"} Body:
+  %b
+    = @note.body
+%br
+= link_to image_tag('pencil.png', style:'border:none; float:none;'), {controller: "jinda", action: "init", s: 'notes:xedit', note_id: @note.id}, data: { confirm: "Please Confirm" }
+
