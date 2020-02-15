@@ -1,5 +1,4 @@
-#Notes
-
+# Notes
 ## Notes Overview 
 Notes is a personel message system in rails. which can be modified to use all rails features such as  files attachment, reminder, mail, social network sharing. This version support key features below.
 
@@ -13,9 +12,9 @@ Notes is a personel message system in rails. which can be modified to use all ra
 - Full test in Key features with rspec
 - Support MVC work flow like normal rails, however this program use controller/helper feature call all controller in order to easy generate using my gem Jinda 
     
-## Current gems version installedd: 
-- Ruby Version #{RUBY_VERSION }
-- Rails Version #{Rails.version }
+## Current gems version installed: 
+- Ruby Version 2.5.0
+- Rails Version 5.2.3
 - Jinda 0.4.5
 
 ## Requirement
