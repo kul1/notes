@@ -50,7 +50,14 @@
   padding: 8px;
   width:100%;
 }
-
+.ui-dialog-contain {
+	width: 92.5%;
+	max-width: 500px;
+	margin: 10% auto 15px auto;
+	padding: 0;
+	position: relative;
+	top: -15px;
+}
 
 .ui-btn-inner { padding: 2px 25px; }
 .ui-btn-up-c,
