@@ -4,10 +4,10 @@
 %>
 <div name= "note_new">
     
-<%= fields_for doc do |f| %>
+  <%= fields_for doc, validate: true  do |f| %>
   <%= f.label :title, "Title" %>
-  <%= f.text_field :title , required: true%><Br>
+  <%= f.text_field :title %><Br>
   <%= f.label :body, "Body Content" %>
-  <%= f.cktext_area :body, :cols=>50, :rows=>6 %>
+  <%= f.cktext_area :body, :cols=>50, :rows=>6, required: true  %>
 <% end %>
 </div>

@@ -149,10 +149,16 @@
 <node CREATED="1493643129947" ID="ID_1655403736" MODIFIED="1493643146424" TEXT="belongs_to :user">
 <icon BUILTIN="edit"/>
 </node>
-<node CREATED="1581495182445" ID="ID_1430552418" MODIFIED="1581495260915" TEXT="   validates :title, length: { maximum: (MAX_TITLE_LENGTH = 30) }, presence: true  ">
+<node CREATED="1581984419312" ID="ID_1934899110" MODIFIED="1581985586488" TEXT="before_validation :ensure_title_has_a_value ">
 <icon BUILTIN="edit"/>
 </node>
-<node CREATED="1581495221779" ID="ID_1231500988" MODIFIED="1581495283426" TEXT="   validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000)} ">
+<node CREATED="1581495182445" ID="ID_1430552418" MODIFIED="1581985664674" TEXT="validates :title, length: { maximum: (MAX_TITLE_LENGTH = 30), message: &quot;Must be less   than 30 characters&quot; }, presence: true">
+<icon BUILTIN="edit"/>
+</node>
+<node CREATED="1581495221779" ID="ID_1231500988" MODIFIED="1581985709585" TEXT="validates :body, length: { maximum: (MAX_BODY_LENGTH = 1000), message: &quot;Must be less   than 1000 characters&quot;} ">
+<icon BUILTIN="edit"/>
+</node>
+<node CREATED="1581986280028" ID="ID_1069060625" MODIFIED="1581987310544" TEXT="private&#xa;  def ensure_title_has_a_value&#xa;    if title.blank?&#xa;      self.title = body[0..(MAX_TITLE_LENGTH-1)] unless body.blank?&#xa;    end&#xa;  end&#xa;  &#xa;">
 <icon BUILTIN="edit"/>
 </node>
 </node>

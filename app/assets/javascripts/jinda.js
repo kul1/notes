@@ -12,3 +12,15 @@ $(function() {
 });
 
 function validate() { return true; }
+
+function logTurbolinkFunction() {
+	console.log("Turbolinks :load");
+}
+function logPageLoadFunction() {
+	console.log("Page: Loads :load");
+}
+
+$(document).on('turbolinks:load', logTurbolinkFunction);
+
+$(document).on('page:load', logPageLoadFunction);
+

@@ -20,5 +20,6 @@
 //= require jinda
 //= require turbolinks
 //  require disable_enter_key.js
+//= require notes.js
 
 
