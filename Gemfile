@@ -91,7 +91,7 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
-  gem 'database_cleaner'
+  gem 'database_cleaner-mongoid'
   gem 'guard'
   gem 'guard-rspec'
   gem 'guard-minitest'

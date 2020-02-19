@@ -47,7 +47,6 @@ RSpec.configure do |config|
 
   config.before(:each, :js => true) do
     #DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.strategy = :truncation
   end
 
   config.before(:each, type: :feature) do
@@ -61,6 +60,7 @@ RSpec.configure do |config|
       # specs, so use truncation strategy.
       # DatabaseCleaner.strategy = :truncation
       DatabaseCleaner[:mongoid].strategy = :truncation
+    	DatabaseCleaner.orm = "mongoid"
 
     end
   end
@@ -73,5 +73,4 @@ RSpec.configure do |config|
     DatabaseCleaner.clean
   end
 #  https://github.com/DatabaseCleaner/database_cleaner #
-
 end

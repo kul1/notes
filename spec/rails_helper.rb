@@ -44,9 +44,12 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
-	
+  
+
+
 	# Added to make factorybot work
   FactoryBot.allow_class_lookup = false 
+  config.use_transactional_fixtures = false
 	config.include FactoryBot::Syntax::Methods
   config.before do
     FactoryBot.find_definitions
