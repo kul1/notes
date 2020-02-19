@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "get an api route", :type => :request do
   let!(:note) {FactoryBot.create_list(:note, 20)}
-before {get '/api/v1/notes'}
+before {get '/api/v1/notes/my'}
 
 it 'returns all notes' do
     expect(JSON.parse(response.note).size).to eq(20)

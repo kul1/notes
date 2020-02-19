@@ -15,6 +15,9 @@ Rails.application.routes.draw do
   get '/notes/my' => 'notes/my'
   get '/notes/my/destroy/:id' => 'notes#destroy'
   get '/notes/destroy/:id' => 'notes#destroy'
+  get '/api/v1/notes/my' => 'notes/my'
+  get '/api/v1/notes/my/destroy/:id' => 'notes#destroy'
+  get '/api/v1/notes/destroy/:id' => 'notes#destroy'
   resources :notes
   resources :users
   resources :identities
