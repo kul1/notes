@@ -15,9 +15,6 @@ Rails.application.routes.draw do
   get '/notes/my' => 'notes/my'
   get '/notes/my/destroy/:id' => 'notes#destroy'
   get '/notes/destroy/:id' => 'notes#destroy'
-  get '/api/v1/notes/my' => 'notes/my'
-  get '/api/v1/notes/my/destroy/:id' => 'notes#destroy'
-  get '/api/v1/notes/destroy/:id' => 'notes#destroy'
   resources :notes
   resources :users
   resources :identities
@@ -26,4 +23,12 @@ Rails.application.routes.draw do
   resources :jinda, :only => [:index, :new]
   root :to => 'notes#my'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
+  # api
+  get '/api/v1/notes/my' => 'api/v1/notes#my'
+  post '/api/v1/notes' => 'api/v1/notes#create', as: 'api_v1_notes'
+  namespace :api do
+    namespace :v1 do
+      resources :notes, :only => [:index]
+    end
+  end
 end

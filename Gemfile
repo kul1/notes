@@ -4,6 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '2.5.0'
 gem 'jinda', git: 'https://github.com/kul1/jinda.git'
 gem 'jinda_adminlte', git: 'https://github.com/kul1/jinda_adminlte.git'
+gem 'simple_command'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.4', '>= 5.2.4.1'
@@ -91,6 +92,8 @@ group :development, :test do
   gem 'binding_of_caller'
   gem 'pry-byebug'
   gem 'factory_bot_rails'
+  gem 'responders'
+  gem 'shoulda-matchers'
   gem 'database_cleaner-mongoid'
   gem 'guard'
   gem 'guard-rspec'

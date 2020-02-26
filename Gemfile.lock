@@ -327,6 +327,9 @@ GEM
       ffi (~> 1.0)
     redcarpet (3.5.0)
     regexp_parser (1.6.0)
+    responders (3.0.0)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rest-client (2.1.0)
       http-accept (>= 1.7.0, < 2.0)
       http-cookie (>= 1.0.2, < 2.0)
@@ -376,6 +379,9 @@ GEM
       rubyzip (>= 1.2.2)
     sexp_processor (4.14.1)
     shellany (0.0.1)
+    shoulda-matchers (4.3.0)
+      activesupport (>= 4.2.0)
+    simple_command (0.1.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -471,11 +477,14 @@ DEPENDENCIES
   rails (~> 5.2.4, >= 5.2.4.1)
   rb-fsevent
   redcarpet
+  responders
   rouge
   rspec
   rspec-rails
   sass-rails (~> 5.0)
   selenium-webdriver
+  shoulda-matchers
+  simple_command
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)

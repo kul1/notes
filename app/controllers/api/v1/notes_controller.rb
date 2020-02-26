@@ -1,13 +1,15 @@
-class NotesController < ApplicationController
+class Api::V1::NotesController < ApplicationController
   before_action :load_note, only: [:show, :destroy]
   # before_action :xload_current_ma_user, only: [:destroy]
 
   def index
     @notes = Note.desc(:created_at).page(params[:page]).per(10)
+    render json: @notes
   end
 
   def my
     @notes = Note.where(user_id: current_ma_user).desc(:created_at).page(params[:page]).per(10)
+    render json: @notes
   end
 
   def show 
@@ -20,19 +22,12 @@ class NotesController < ApplicationController
 
   def create
     @note = Note.new(
-      title: $xvars["new_note"]["title"],
-      body: $xvars["new_note"]["body"],
-      user_id: $xvars["user_id"])
-    @note.save!
-    # if @note.save!
-    #   format.html { redirect_to @note, notice: 'Sample was successfully created.'  }
-    #   format.json { render :show, status: :created, location: @note }
-    # else
-    #   format.html { render :new }
-    #   format.json { render json: @note.errors, status: :unprocessable_entity }
-    # end
-    redirect_to @note
+      title: params[:title],
+      body: params[:body],
+      user_id: params[:user])
 
+    @note.save!
+    render json: @note, status: :created
   end
 
 
